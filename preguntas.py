@@ -11,7 +11,12 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-
+def peticion():
+    with open("data.csv", "r") as file:
+        datos=file.readlines()
+    datos=[line.split("\n") for line in datos]
+    datos=[[elemento for elemento in sublist.split('\t') if elemento] for sublist, _ in datos]
+    return datos
 
 def pregunta_01():
     """
@@ -21,9 +26,12 @@ def pregunta_01():
     214
 
     """
-    return
+    datos=peticion()
+    suma=map(lambda fila: fila[1], datos)
+    suma=sum(map(int, suma))
 
-
+    return suma
+print(pregunta_01())
 def pregunta_02():
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
@@ -39,8 +47,11 @@ def pregunta_02():
     ]
 
     """
-    return
-
+    datos=peticion()
+    pares=[(elemento[0],int(elemento[1])) for elemento in datos]
+    pares=sorted(pares)
+    return pares
+print(pregunta_02())
 
 def pregunta_03():
     """

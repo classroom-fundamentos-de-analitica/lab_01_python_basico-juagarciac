@@ -31,7 +31,7 @@ def pregunta_01():
     suma=sum(map(int, suma))
 
     return suma
-print(pregunta_01())
+
 def pregunta_02():
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
@@ -51,7 +51,6 @@ def pregunta_02():
     pares=[(elemento[0],int(elemento[1])) for elemento in datos]
     pares=sorted(pares)
     return pares
-print(pregunta_02())
 
 def pregunta_03():
     """

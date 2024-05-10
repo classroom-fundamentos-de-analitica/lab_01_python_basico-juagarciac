@@ -315,13 +315,9 @@ def pregunta_09():
                 conteo[letras] += 1
             else:
                 conteo[letras] = 1
-    lista1=list(conteo.items())
-    conteo_ordenado = []
-    for i in range(len(lista1)):
-        conteo_ordenado.append((lista1[i][0],lista1[i][1]))
-    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
-    return conteo_ordenado
+    return conteo
 
+print(pregunta_09())
 
 def pregunta_10():
     """

@@ -48,9 +48,15 @@ def pregunta_02():
 
     """
     datos=peticion()
-    pares=[(elemento[0],int(elemento[1])) for elemento in datos]
-    pares=sorted(pares)
-    return pares
+    conteo = {}
+    for sublist in datos:
+        letra = sublist[0][0]
+        if letra in conteo:
+            conteo[letra] += 1
+        else:
+            conteo[letra] = 1
+    conteo_ordenado = sorted(conteo.items())
+    return conteo_ordenado
 
 def pregunta_03():
     """
@@ -67,8 +73,17 @@ def pregunta_03():
     ]
 
     """
-    return
-
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        letra = sublist[0][0]
+        suma=int(sublist[1][0])
+        if letra in conteo:
+            conteo[letra] += suma
+        else:
+            conteo[letra] = suma
+    conteo_ordenado = sorted(conteo.items())
+    return conteo_ordenado
 
 def pregunta_04():
     """
@@ -92,8 +107,18 @@ def pregunta_04():
     ]
 
     """
-    return
-
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        mes = sublist[2]
+        mes = mes.split("-")
+        mes = mes[1]
+        if mes in conteo:
+            conteo[mes] += 1
+        else:
+            conteo[mes] = 1
+    conteo_ordenado = sorted(conteo.items())
+    return conteo_ordenado
 
 def pregunta_05():
     """
@@ -110,7 +135,24 @@ def pregunta_05():
     ]
 
     """
-    return
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        letra = sublist[0][0]
+        comparacion=int(sublist[1][0])
+        if letra in conteo:
+            if conteo[letra][0] < comparacion:
+                conteo[letra][0] = comparacion
+            elif conteo[letra][1] > comparacion:
+                conteo[letra][1] = comparacion
+        else:
+            conteo[letra] = [comparacion,comparacion]
+    lista1=list(conteo.items())
+    conteo_ordenado = []
+    for i in range(len(lista1)):
+        conteo_ordenado.append((lista1[i][0],lista1[i][1][0],lista1[i][1][1]))
+    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
+    return conteo_ordenado
 
 
 def pregunta_06():
@@ -135,7 +177,28 @@ def pregunta_06():
     ]
 
     """
-    return
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        linea = sublist[4]
+        comparacion=linea.split(",")
+        for par in comparacion:
+            par=par.split(":")
+            letras=par[0]
+            numero=int(par[1])
+            if letras in conteo:
+                if conteo[letras][0] > numero:
+                    conteo[letras][0] = numero
+                elif conteo[letras][1] < numero:
+                    conteo[letras][1] = numero
+            else:
+                conteo[letras] = [numero,numero]
+    lista1=list(conteo.items())
+    conteo_ordenado = []
+    for i in range(len(lista1)):
+        conteo_ordenado.append((lista1[i][0],lista1[i][1][0],lista1[i][1][1]))
+    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
+    return conteo_ordenado
 
 
 def pregunta_07():
@@ -159,7 +222,23 @@ def pregunta_07():
     ]
 
     """
-    return
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        linea = sublist[1]
+        letra = sublist[0]
+        for par in linea:
+            numero=int(par)
+            if numero in conteo:
+                conteo[numero].append(letra)
+            else:
+                conteo[numero] = [letra]
+    lista1=list(conteo.items())
+    conteo_ordenado = []
+    for i in range(len(lista1)):
+        conteo_ordenado.append((lista1[i][0],lista1[i][1]))
+    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
+    return conteo_ordenado
 
 
 def pregunta_08():
@@ -184,7 +263,24 @@ def pregunta_08():
     ]
 
     """
-    return
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        linea = sublist[1]
+        letra = sublist[0]
+        for par in linea:
+            numero=int(par)
+            if numero in conteo:
+                if not letra in conteo[numero]:
+                    conteo[numero].append(letra)
+            else:
+                conteo[numero] = [letra]
+    lista1=list(conteo.items())
+    conteo_ordenado = []
+    for i in range(len(lista1)):
+        conteo_ordenado.append((lista1[i][0],sorted(lista1[i][1])))
+    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
+    return conteo_ordenado
 
 
 def pregunta_09():
@@ -207,7 +303,24 @@ def pregunta_09():
     }
 
     """
-    return
+    datos=peticion()
+    conteo = {}
+    for sublist in datos:
+        linea = sublist[4]
+        comparacion=linea.split(",")
+        for par in comparacion:
+            par=par.split(":")
+            letras=par[0]
+            if letras in conteo:
+                conteo[letras] += 1
+            else:
+                conteo[letras] = 1
+    lista1=list(conteo.items())
+    conteo_ordenado = []
+    for i in range(len(lista1)):
+        conteo_ordenado.append((lista1[i][0],lista1[i][1]))
+    conteo_ordenado = sorted(conteo_ordenado, key=lambda x: x[0])
+    return conteo_ordenado
 
 
 def pregunta_10():
@@ -228,7 +341,14 @@ def pregunta_10():
 
 
     """
-    return
+    datos=peticion()
+    conteo_ordenado = []
+    for sublist in datos:
+        letra=sublist[0]
+        abecedario=sublist[3].split(",")
+        linea = sublist[4].split(",")
+        conteo_ordenado.append((letra,len(abecedario),len(linea)))
+    return conteo_ordenado
 
 
 def pregunta_11():
@@ -246,11 +366,18 @@ def pregunta_11():
         "f": 134,
         "g": 35,
     }
-
-
     """
-    return
-
+    datos=peticion()
+    conteo_ordenado ={}
+    for sublist in datos:
+        letra=sublist[1]
+        abecedario=sublist[3].split(",")
+        for i in abecedario:
+            if i in conteo_ordenado:
+                conteo_ordenado[i] += int(letra)
+            else:
+                conteo_ordenado[i] = int(letra)
+    return conteo_ordenado
 
 def pregunta_12():
     """
@@ -267,4 +394,18 @@ def pregunta_12():
     }
 
     """
-    return
+    datos=peticion()
+    conteo_ordenado ={}
+    letras = set()
+    for fila in datos:
+        letras.add(fila[0])
+    for sublist in datos:
+        letra=sublist[0]
+        abecedario=sublist[4].split(",")
+        for i in abecedario:
+            probar=i.split(":")
+            if letra in conteo_ordenado:
+                conteo_ordenado[letra] += int(probar[1])
+            else:
+                conteo_ordenado[letra] = int(probar[1])
+    return conteo_ordenado
